@@ -8,9 +8,10 @@ def api(request):
 	morph = pymorphy2.MorphAnalyzer()
 	variations = morph.parse(inpunt_word)
 	if len(variations) > 1:
-		for (i, item) in enumerate(variations):
+		for item in variations:
+			word = item
 			if item.normal_form == inpunt_word:
-				word = variations[i]
+				word = item
 				break
 	else:
 		word = variations[0]

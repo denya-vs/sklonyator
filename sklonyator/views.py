@@ -17,7 +17,10 @@ def api(request):
 		word = variations[0]
 	number = request.GET.get('number', word.tag.number)
 	result = word.inflect({number, case})
-	return HttpResponse(result.word)
+	if result:
+		return HttpResponse(result.word)
+	else:
+		return HttpResponse(False)
 
 def home(request):
 	return render(request, 'home.html')

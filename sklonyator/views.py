@@ -13,8 +13,10 @@ def api(request):
 			if item.normal_form == inpunt_word:
 				word = item
 				break
-	else:
+	elif len(variations) == 1:
 		word = variations[0]
+	else:
+		return HttpResponse(False)
 	number = request.GET.get('number', word.tag.number)
 	result = word.inflect({number, case})
 	if result:
